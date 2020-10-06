@@ -9,6 +9,7 @@ class Hobby(models.Model):
 
     hobby_name = models.CharField(max_length=200)
     hobby_description = models.CharField(max_length=200)
+    hobby_image = models.CharField(max_length=500, default="https://upload.wikimedia.org/wikipedia/commons/8/88/Danny_DeVito_cropped_and_edited_for_brightness.jpg")
 
 
 class Portfolios(models.Model):
@@ -18,3 +19,4 @@ class Portfolios(models.Model):
 
     portfolio_name = models.CharField(max_length=200)
     portfolio_description = models.CharField(max_length=200)
+    portfolio_image = models.CharField(max_length=500, default="https://upload.wikimedia.org/wikipedia/commons/8/88/Danny_DeVito_cropped_and_edited_for_brightness.jpg")

@@ -1,4 +1,4 @@
-{% load static %}
+{% extends 'hobbies/base.html'%}
 <!doctype html>
 <html lang="en">
 
@@ -8,19 +8,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'hobbies/style.css' %}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
-
 <body>
-{%  for hobbies in hobby_list %}
-    <ul>
-        <li>
-            <a href="{% url 'PortfolioDatabase:hobby_detail' hobbies.id %}">{{ hobbies.id }} -- {{ hobbies.hobby_name }}</a>
-        </li>
-    </ul>
-{% endfor %}
+{% block body %}
+    {%  for hobbies in hobby_list %}
+        <div class="row">
+            <div class="col-md-3 offset-md-2">
+                <img class="card" height="150px" src="{{hobbies.hobby_image}}"/>
+            </div>
+            <div class="col-md-4 ">
+                <h3>{{ hobbies.hobby_name }}</h3>
+                <h3>{{ hobbies.hobby_description }}</h3>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    {% endfor %}
+{% endblock %}
 </body>
-
 </html>
