@@ -8,7 +8,8 @@ from django.template import loader
 # Create your views here.
 
 def Home(request):
-    return HttpResponse('Hey! My name is Jp.\nI like programming, video games, and cats.\nIm vibing.')
+    template = loader.get_template('home/index.html')
+    return render(request, 'home/index.html')
 
 
 def Hobbies(request):
@@ -46,4 +47,5 @@ def portfolio_detail(request, portfolio_id):
 
 
 def Contact(request):
-    return HttpResponse('Email: jesusotteson@mail.weber.edu')
+    template = loader.get_template('contact/index.html')
+    return render(request, 'contact/index.html')
