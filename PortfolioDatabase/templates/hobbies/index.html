@@ -16,12 +16,13 @@
             <div class="col-md-3 offset-md-2">
                 <img class="card" height="150px" src="{{hobbies.hobby_image}}"/>
             </div>
-            <div class="col-md-4 ">
+            <div class="col-md-4">
                 <h3>{{ hobbies.hobby_name }}</h3>
                 <h3>{{ hobbies.hobby_description }}</h3>
             </div>
-            <div class="col-md-2"></div>
-
+            <div class="col-md-2">
+                <a href="{% url 'PortfolioDatabase:hobby_detail' hobbies.id %}" class="btn btn-success">Details</a>
+            </div>
         </div>
     {% endfor %}
 {% endblock %}

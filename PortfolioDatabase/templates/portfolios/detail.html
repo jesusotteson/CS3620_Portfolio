@@ -1,6 +1,16 @@
 {% extends 'portfolios/base.html'%}
 
 {% block body %}
-<h1>{{ portfolio.portfolio_name }}</h1>
-<h2>{{ portfolio.portfolio_description }}</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-nd-6">
+                <img src="{{portfolio.portfolio_image}}" class="card" height="300px"/>
+            </div>
+            <div class="col-nd-6">
+                <h1>{{ portfolio.portfolio_name }}</h1>
+                <h2>{{ portfolio.portfolio_description }}</h2>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
