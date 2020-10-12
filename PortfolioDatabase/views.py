@@ -1,20 +1,17 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from .forms import ContactForm
 from .models import Hobby
-from .models import Portfolios
-from django.template import loader
+from .models import Portfolio
 
 
 # Create your views here.
 
 def Home(request):
-    template = loader.get_template('home/index.html')
     return render(request, 'home/index.html')
 
 
 def Hobbies(request):
     hobby_list = Hobby.objects.all()
-    template = loader.get_template('hobbies/index.html')
     context = {
         'hobby_list': hobby_list,
     }
@@ -29,9 +26,8 @@ def hobby_detail(request, hobby_id):
     return render(request, 'hobbies/detail.html', context)
 
 
-def Portfolio(request):
-    portfolio_list = Portfolios.objects.all()
-    template = loader.get_template('portfolios/index.html')
+def Portfolios(request):
+    portfolio_list = Portfolio.objects.all()
     context = {
         'portfolio_list': portfolio_list,
     }
@@ -39,7 +35,7 @@ def Portfolio(request):
 
 
 def portfolio_detail(request, portfolio_id):
-    portfolio = Portfolios.objects.get(pk=portfolio_id)
+    portfolio = Portfolio.objects.get(pk=portfolio_id)
     context = {
         'portfolio': portfolio
     }
@@ -47,5 +43,14 @@ def portfolio_detail(request, portfolio_id):
 
 
 def Contact(request):
-    template = loader.get_template('contact/index.html')
     return render(request, 'contact/index.html')
+
+
+def contact_item(request):
+    form = ContactForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('PortfolioDatabase:Home')
+
+    return render(request, 'contact/contact-form.html', {'form': form})
