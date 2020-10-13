@@ -1,5 +1,33 @@
-<form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <button type="submit">Login</button>
-</form>
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'contact/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <title>Contact</title>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a href="#" class="navbar-brand">Contact</a>
+        <div class="navbar">
+            <a href="http://127.0.0.1:8000/PortfolioDatabase/" class="nav-item nav-link">Home</a>
+            <a href="http://127.0.0.1:8000/PortfolioDatabase/portfolio/" class="nav-item nav-link">Portfolio</a>
+            <a href="http://127.0.0.1:8000/PortfolioDatabase/hobbies/" class="nav-item nav-link">Hobbies</a>
+            <a href="http://127.0.0.1:8000/PortfolioDatabase/contact/" class="nav-item nav-link">Contact</a>
+            {% if user.is_authenticated %}
+                <a href="{%  url 'profile' %}" class="nav-item nav-link">Profile</a>
+                <a href="{%  url 'logout' %}" class="nav-item nav-link">Logout</a>
+            {% else %}
+                <a href="{%  url 'login' %}" class="nav-item nav-link">Login</a>
+            {% endif %}
+        </div>
+
+    </nav>
+    <form class="center" method="POST">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Login</button>
+    </form>
+</body>
+</html>

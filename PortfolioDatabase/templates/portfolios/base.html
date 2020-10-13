@@ -12,9 +12,11 @@
         <a href="#" class="navbar-brand">Portfolio</a>
 
         <div class="navbar">
+        {% if user.is_authenticated %}
             <a href="{% url 'PortfolioDatabase:portfolio_item' %}" class="nav-item nav-link">Add Item</a>
             <a href="" class="nav-item nav-link">Delete Item</a>
             <a href="" class="nav-item nav-link">View Item</a>
+        {% endif %}
         </div>
 
         <div class="navbar">
