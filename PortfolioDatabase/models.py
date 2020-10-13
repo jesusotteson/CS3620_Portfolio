@@ -33,4 +33,4 @@ class Contact(models.Model):
 
     contact_name = models.CharField(max_length=200)
     contact_email = models.CharField(max_length=200)
-    contact_message = models.CharField(max_length=200)
+    contact_message = models.CharField(max_length=500)

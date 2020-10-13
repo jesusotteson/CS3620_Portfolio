@@ -16,8 +16,20 @@
             <a href="http://127.0.0.1:8000/PortfolioDatabase/contact/" class="nav-item nav-link">Contact</a>
         </div>
 
-    </nav>
+        <div class="navbar">
+            <a href="{% url 'PortfolioDatabase:portfolio_item' %}" class="nav-item nav-link">Add Item</a>
+            <a href="" class="nav-item nav-link">Delete Item</a>
+            <a href="" class="nav-item nav-link">View Item</a>
+        </div>
 
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     {% block body %}
 
     {% endblock %}

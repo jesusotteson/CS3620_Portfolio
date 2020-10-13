@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ContactForm
+from .forms import PortfolioForm
 from .models import Hobby
 from .models import Portfolio
 
@@ -40,6 +41,37 @@ def portfolio_detail(request, portfolio_id):
         'portfolio': portfolio
     }
     return render(request, 'portfolios/detail.html', context)
+
+
+def portfolio_item(request):
+    form = PortfolioForm(request.POST or None)
+
+    if form.is_valid():
+        form.save()
+        return redirect('PortfolioDatabase:Portfolios')
+
+    return render(request, 'portfolios/portfolio-form.html', {'form': form})
+
+
+def update_portfolio(request, id):
+    portfolio = Portfolio.objects.get(id=id)
+    form = PortfolioForm(request.POST or None, instance=portfolio)
+
+    if form.is_valid():
+        form.save()
+        return redirect('PortfolioDatabase:Portfolios')
+
+    return render(request, 'portfolios/portfolio-form.html', {'form': form, 'portfolio': portfolio})
+
+
+def delete_portfolio(request, id):
+    portfolio = Portfolio.objects.get(id=id)
+
+    if request.method == 'POST':
+        portfolio.delete()
+        return redirect('PortfolioDatabase:Portfolios')
+
+    return render(request, 'portfolios/portfolio-delete.html', {'portfolio': portfolio})
 
 
 def Contact(request):
